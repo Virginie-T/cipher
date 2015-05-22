@@ -82,6 +82,7 @@ function cipher_form_submit($form, &$form_state) {
 
 	}
 	$translation = implode($output);
+	drupal_set_message($translation);
     $_SESSION['cipher_output'] = $translation;
 
     $form_state['redirect'] = 'cipher_success';
@@ -89,5 +90,7 @@ function cipher_form_submit($form, &$form_state) {
 
 function cipher_success() {
     $answer = $_SESSION['cipher_output'];
+    	drupal_set_message($answer);
+
     return 'something ' . $answer;
 }
