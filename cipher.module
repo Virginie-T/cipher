@@ -68,16 +68,18 @@ function cipher_form_submit($form, &$form_state) {
 
     $input_words = str_split($phrase);
 
-    $alphabet = ['a', 'b', 'c', 'd', 'e'];
+	$str_alphabet = 'abcdefghijklmnopqrstuvxyz';
+    $alphabet = str_split($str_alphabet);    
     $output = array();
 
     for ($i = 0; $i <= strlen($phrase); $i++) {
 
     	if (in_array($phrase, $alphabet)) {
     		$input_words[$i] = $alphabet[$i+$value];
-    		array_push($output, $alphabet[$i+$value]);
+    		$replace = str_replace($input_words, $alphabet[$i + $value]);
+    		array_push($output, $replace);
     	} else {
-    		array_push($output, $input_words[$i+$value]);
+    		array_push($output, $input_words);
     	}
 
 	}
