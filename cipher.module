@@ -82,7 +82,7 @@ $phrase = 'abc';
     $form_state['redirect'] = 'cipher_success';
 }
 
-function cipher_success() {
+function cipher_cipher_success() {
     $answer = $_SESSION['cipher_output'];
-    return $answer;
+    return 'something' . $answer;
 }
