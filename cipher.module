@@ -76,10 +76,9 @@ function cipher_form_submit($form, &$form_state) {
 
     	if (in_array($phrase, $alphabet)) {
     		$input_words[$i] = $alphabet[$i+$value];
-    		$replace = str_replace($input_words, $alphabet[$i + $value]);
-    		array_push($output, $replace);
+    		array_push($output, $alphabet[$i+$value]);
     	} else {
-    		array_push($output, $input_words);
+    		array_push($output, $input_words[$i+$value]);
     	}
 
 	}
