@@ -1,0 +1,71 @@
+<?php
+
+function cipher_menu() {
+    $items['cipher'] = array(
+        'title' => 'Shift Cipher',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('cipher_form'),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    $items['cipher_success'] = array(
+        'title' => 'Success',
+        'page callback' => 'cipher_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function cipher_form() {
+    $form['shift_value'] = array(
+        '#title' => 'Shift Value',
+        '#type' => 'textfield',
+        '#description' => t('Please enter the number of places to shift each letter over.'),
+        '#element_validate' => array('element_validate_integer_positive'),
+        '#required' => TRUE,
+    );
+    $form['shift_direction'] = array(
+        '#title' => 'Shift Direction',
+        '#type' => 'textfield',
+        '#description' => t('Please enter "right" or "left".'),
+        '#element_validate' => array('element_validate_direction'),
+        '#required' => TRUE,
+    );
+    $form['phrase'] = array(
+        '#title' => 'Phrase',
+        '#type' => 'textfield',
+        '#description' => t('Please enter phrase you want to encrypt.'),
+        '#required' => TRUE,
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Encrypt',
+    );
+
+    return $form;
+}
+
+function element_validate_direction($element) {
+
+}
+
+function cipher_form_submit($form, &$form_state) {
+    $value = $form_state['values']['shift_value'];
+    $direction = $form_state['values']['shift_direction'];
+    $phrase = $form_state['values']['phrase'];
+
+
+
+
+    $_SESSION['cipher_output'] = $;
+
+    $form_state['redirect'] = 'success';
+}
+
+function cipher_success() {
+    $answer = $_SESSION['cipher_output'];
+
+
+    return $answer;
+}
