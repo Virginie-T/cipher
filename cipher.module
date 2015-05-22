@@ -76,7 +76,7 @@ $phrase = 'abc';
 
 	}
 
-	$translation = implode($output);
+	$translation = implode(" ", $output);
     $_SESSION['cipher_output'] = $output;
 
     $form_state['redirect'] = 'cipher_success';
