@@ -36,6 +36,7 @@ function cipher_form() {
         '#title' => 'Phrase',
         '#type' => 'textfield',
         '#description' => t('Please enter phrase you want to encrypt.'),
+        '#element_validate' => array('element_validate_special_characters'),
         '#required' => TRUE,
     );
     $form['submit'] = array(
@@ -51,6 +52,12 @@ function element_validate_direction($element) {
 
     if ($element['#value'] != ('right' || 'left')) {
         form_error($element, t('Must be a valid choice : right or left.'));
+    }
+}
+
+function element_validate_special_characters($element) {
+    if(preg_match('/[^a-zA-z.,!? ]+/', $element['#value'])) {
+        form_error($element, t('Your phrase can only contain letters, space and punctuation.'));
     }
 }
 
@@ -75,7 +82,7 @@ function cipher_form_submit($form, &$form_state) {
 
 	}
 	drupal_set_message($output);
-	$translation = implode($output);
+	$translation = implode("", $output);
     $_SESSION['cipher_output'] = $output;
 
     $form_state['redirect'] = 'cipher_success';
