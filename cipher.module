@@ -74,14 +74,13 @@ function cipher_form_submit($form, &$form_state) {
     for ($i = 0; $i <= strlen($phrase); $i++) {
 
     	if (in_array($phrase, $alphabet)) {
-    		$input_words[i] = next($alphabet);
-    		array_push($output, next($alphabet));
+    		$input_words[i] = $alphabet[$i+1];
+    		array_push($output, $alphabet[$i+1]);
     	} else {
-    		array_push($output, next($input_words));
+    		array_push($output, $input_words[$i+1]);
     	}
 
 	}
-	drupal_set_message($output);
 	$translation = implode($output);
     $_SESSION['cipher_output'] = $translation;
 
@@ -90,5 +89,5 @@ function cipher_form_submit($form, &$form_state) {
 
 function cipher_success() {
     $answer = $_SESSION['cipher_output'];
-    return 'something' . $answer;
+    return 'something ' . $answer;
 }
