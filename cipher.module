@@ -71,7 +71,7 @@ $phrase = 'abc';
     		$input_words[i] = next($alphabet);
     		array_push($output, next($alphabet));
     	} else {
-    		array_push($output, $input_words[i]);
+    		array_push($output, next($input_words));
     	}
 
 	}
