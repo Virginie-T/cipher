@@ -59,6 +59,7 @@ function cipher_form_submit($form, &$form_state) {
     $direction = $form_state['values']['shift_direction'];
     $phrase = $form_state['values']['phrase'];
 
+$phrase = 'abc';
     $input_words = str_split($phrase);
 
     $alphabet = ['a', 'b', 'c', 'd', 'e'];
@@ -67,8 +68,8 @@ function cipher_form_submit($form, &$form_state) {
     for ($i = 0; $i <= strlen($phrase); $i++) {
 
     	if (in_array($phrase, $alphabet)) {
-    		$input_words[i] = $alphabet[i+1];
-    		array_push($output, $alphabet[i+1]);
+    		$input_words[i] = next($alphabet);
+    		array_push($output, next($alphabet));
     	} else {
     		array_push($output, $input_words[i]);
     	}
